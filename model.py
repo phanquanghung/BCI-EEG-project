@@ -50,7 +50,7 @@ PATH = 'model.pt'
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 print('Model running on {}'.format(device))				
 nnet = NNet()
-nnet.load_state_dict(torch.load(PATH),map_location=device)
+nnet.load_state_dict(torch.load(PATH, map_location=device))
 nnet.to(device)
 nnet.eval()
 
