@@ -4,13 +4,13 @@ import torch.nn as nn
 thres = .5  
 
 class NNet(nn.Module):
-    def __init__(self, in_channels=opt.in_channels, out_channels=opt.out_channels):
+    def __init__(self, in_channels=22, out_channels=3):
         super(NNet, self).__init__()
         self.hidden = 16
         self.net1 = nn.Sequential(
-            nn.BatchNorm1d(opt.in_channels),
-            nn.Conv1d(opt.in_channels, opt.in_channels, 5, padding=2),  # 128
-            nn.Conv1d(opt.in_channels, self.hidden, 4, stride=4),  # 32
+            nn.BatchNorm1d(in_channels),
+            nn.Conv1d(in_channels, in_channels, 5, padding=2),  # 128
+            nn.Conv1d(in_channels, self.hidden, 4, stride=4),  # 32
             nn.LeakyReLU(0.01),
             nn.Conv1d(self.hidden, self.hidden, 7, padding=3), # 32
         )
@@ -25,7 +25,7 @@ class NNet(nn.Module):
         self.final = nn.Sequential(
             nn.Linear(192, 32),
             nn.LeakyReLU(0.01),
-            nn.Linear(32, opt.out_channels),
+            nn.Linear(32, out_channels),
             nn.Sigmoid()
         )
         
