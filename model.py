@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+thres = .5  
+
 class NNet(nn.Module):
     def __init__(self, in_channels=opt.in_channels, out_channels=opt.out_channels):
         super(NNet, self).__init__()
@@ -44,7 +46,7 @@ class NNet(nn.Module):
         y = torch.cat((x[..., -4:], y, y1[..., -4:]), dim=-1).view(x.shape[0], -1)
         return self.final(y)
 
-PATH = './model.pt'
+PATH = 'model.pt'
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 print('Model running on {}'.format(device))				
 nnet = NNet()
@@ -56,4 +58,6 @@ def predict(input):
 	with torch.no_grad():
 		input = np.array(input, dtype=np.float32).reshape(1, 256, 22)
 		input = torch.from_numpy(input).to(device)
-	return nnet(input).squeeze().detach().cpu().numpy()
+		output = nnet(input).squeeze().detach().cpu().numpy()
+	output = output > thres
+	return output
