@@ -1,6 +1,7 @@
 from inlet import *
 from model import *
 import numpy as np
+from pylsl import StreamInfo, StreamOutlet
 
 period = 10
 data = []
