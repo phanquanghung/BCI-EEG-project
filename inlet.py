@@ -7,7 +7,7 @@ def get_response():
 	
 	# create a new inlet to read from the stream
 	inlet = StreamInlet(streams[0])
-
+	print('Found an EEG stream!')
 	while True:
 		# get a new sample (you can also omit the timestamp part if you're not
 		# interested in it)

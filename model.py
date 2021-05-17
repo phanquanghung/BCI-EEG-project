@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 thres = .5  
 
@@ -56,7 +57,7 @@ nnet.eval()
 
 def predict(input):
 	with torch.no_grad():
-		input = np.array(input, dtype=np.float32).reshape(1, 256, 22)
+		input = np.array(input, dtype=np.float32).reshape(1, 22, 128)
 		input = torch.from_numpy(input).to(device)
 		output = nnet(input).squeeze().detach().cpu().numpy()
 	output = output > thres

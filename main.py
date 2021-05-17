@@ -1,14 +1,15 @@
 from inlet import *
-from model import *
+# from model import *
 import numpy as np
 from pylsl import StreamInfo, StreamOutlet
 
 period = 10
 data = []
-max_size = 256
+max_size = 128
 info = StreamInfo('Control', 'C', 3, 128//period, 'float32', 'ctrlid')
 outlet = StreamOutlet(info)
-for timestamp, sample in get_response():
+
+for _, sample in get_response():
 		data.append(sample)
 		if len(data) >= max_size:
 			ctrl = predict(data[:max_size])
