@@ -60,5 +60,5 @@ def predict(input):
 		input = np.array(input, dtype=np.float32).reshape(1, 22, 128)
 		input = torch.from_numpy(input).to(device)
 		output = nnet(input).squeeze().detach().cpu().numpy()
-	output = output > thres
+	output = np.array(output > thres, dtype=np.bool)
 	return output

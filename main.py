@@ -1,5 +1,5 @@
 from inlet import *
-# from model import *
+from model import *
 import numpy as np
 from pylsl import StreamInfo, StreamOutlet
 
@@ -15,3 +15,4 @@ for _, sample in get_response():
 			ctrl = predict(data[:max_size])
 			data = data[:max_size-period]
 			outlet.push_sample(ctrl)
+			print(ctrl)
