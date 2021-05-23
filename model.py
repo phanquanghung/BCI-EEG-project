@@ -1,8 +1,9 @@
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-thres = .5  
+thres = np.array([.1235, .1075, .104])
 
 class NNet(nn.Module):
     def __init__(self, in_channels=22, out_channels=3):

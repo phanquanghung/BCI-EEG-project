@@ -20,11 +20,10 @@ print('Found an EEG stream!')
 def animate(i):
 	sample, _ = inlet.pull_sample()
 	data.append(sample[:4])
-	_data = np.transpose(np.array(data), (1,0))
+	_data = np.transpose(np.array(data), (1, 0))
 	for i in range(4):
 		axs[i//2, i%2].clear()
 		axs[i//2, i%2].plot(range(len(_data[i])), _data[i])
-		
 	data.pop(0)
 	# if len(data) >= max_size:
 		# data = data[:max_size-period]

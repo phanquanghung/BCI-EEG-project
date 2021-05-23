@@ -16,3 +16,5 @@ for _, sample in get_response():
 			data = data[:max_size-period]
 			outlet.push_sample(ctrl)
 			print(ctrl)
+			file = open("D:\Storage\Projects\Development\Code\BCI-EEG-project\output.txt", "w")
+			file.writelines(str(ctrl))
